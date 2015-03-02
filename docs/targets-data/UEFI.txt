@@ -1,0 +1,18 @@
+--
+BIOS/UEFI Dell
+-
+password + Enter*2
+--
+
+--
+BIOS HP ProBook :
+-
+label 0
+???
+(password + Enter)*4
+Reboot
+Wait
+goto 0
+-
+Sound may be used to detect password success
+--

@@ -1,0 +1,26 @@
+---
+Motorolla
+Android 4.4
+--
+PIN Code
+-
+label 0
+(pinCode - Enter) * 5
+wait 30s
+enter
+goto 0
+---
+
+---
+Galaxy Tab Pro 10
+Android 4.4
+--
+PIN Code
+-
+label 0
+(pinCode - Enter) * 5
+wait 30s
+enter
+Tabulation * 10
+goto 0
+---

@@ -1,0 +1,2 @@
+Find how to calculate size of a wordlist file
+Show password number on LCD
