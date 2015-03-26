@@ -9,7 +9,7 @@ class KeyboardInterface
 {
 	public:
 		void begin();
-		void print(char*, int);
+		void print(const char*, int);
 		void press(int);
 };
 
