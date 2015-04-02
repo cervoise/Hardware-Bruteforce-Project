@@ -7,9 +7,7 @@
 #include "KeyboardInterface.h"
 
 void KeyboardInterface::begin()
-{
-	Keyboard.begin();
-}
+{ }
 
 void KeyboardInterface::print(const char* string, int d)
 {
@@ -23,9 +21,11 @@ void KeyboardInterface::print(const char* string, int d)
 
 void KeyboardInterface::press(int key)
 {
-	Keyboard.press(key);
+	Keyboard.set_key1(key);
+	Keyboard.send_now();
 	delay(50);
-	Keyboard.releaseAll();
+	Keyboard.set_key1(0);
+	Keyboard.send_now();
 }
 
 #endif
