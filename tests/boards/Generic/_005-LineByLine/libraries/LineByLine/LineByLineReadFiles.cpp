@@ -55,12 +55,12 @@ char* LineByLineReadFiles::next()
 	char line[LINE_MAX_LENGTH];
 	while (i == 0 || line[i-1] != '\n')
 	{
-		if (i >= LINE_MAX_LENGTH)
+		// Check that char position doesn't exceed max length
+		if (i < LINE_MAX_LENGTH)
 		{
-			// Line is too long: we ignore the end of it
+			line[i] = currentFile.read();
 		}
-
-		line[i] = currentFile.read();
+		
 		i++;
 	}
 
