@@ -11,8 +11,6 @@ class LineByLine {
 		char* next();
 		
 	protected:
-		void init(char*[]);
-		
 		char *dataList[];
 		int pos = -1;
 		

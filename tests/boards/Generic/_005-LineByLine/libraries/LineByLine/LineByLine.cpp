@@ -4,11 +4,6 @@
 
 LineByLine::LineByLine(char *dataList[])
 {
-	init(dataList);
-}
-
-void LineByLine::init(char *dataList[])
-{
 	dataList = dataList;
 }
 

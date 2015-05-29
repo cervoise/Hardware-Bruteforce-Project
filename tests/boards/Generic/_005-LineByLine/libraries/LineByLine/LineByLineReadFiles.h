@@ -12,8 +12,6 @@ class LineByLineReadFiles : public LineByLine {
 		char* next();
 		
 	protected:
-		//void init(char*[], bool);
-		
 		File currentFile;
 		
 };
