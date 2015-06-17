@@ -67,18 +67,3 @@ char* LineByLineReadFiles::next()
 	return line;
 }
 
-/*
-bool openNextFile()
-{
-	currentFile = SD.open(LineByLine::next());
-	if (!currentFile)
-	{
-		//TODO: log error while opening file dataList[pos]	
-		return false;
-	}
-	
-	return true;
-}
-*/
-
-
