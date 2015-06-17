@@ -17,7 +17,7 @@ const int sdCsPin = 4;
 #include <SD.h>
 
 
-#ifdef READ_LINE_BY_LINE_IN_FILES
+#if READ_LINE_BY_LINE_IN_FILES
   #include <LineByLineReadFiles.h>
   char *wordfiles[] = {"file1.txt", "file2.txt"};
   LineByLineReadFiles lineByLine(wordfiles, sdCsPin);
