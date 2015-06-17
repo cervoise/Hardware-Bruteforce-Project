@@ -1,4 +1,6 @@
 
+#ifndef LineByLineReadFiles_h
+#define LineByLineReadFiles_h
 
 #include "LineByLine.h"
 
@@ -15,3 +17,6 @@ class LineByLineReadFiles : public LineByLine {
 		File currentFile;
 		
 };
+
+#endif
+

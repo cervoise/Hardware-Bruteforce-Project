@@ -1,4 +1,7 @@
 
+#ifndef LineByLine_h
+#define LineByLine_h
+
 #include <Arduino.h>
 //#include <SPI.h>
 #include <SD.h>
@@ -15,3 +18,6 @@ class LineByLine {
 		int pos = -1;
 		
 };
+
+#endif
+
