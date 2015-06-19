@@ -5,7 +5,7 @@
 #define LINE_MAX_LENGTH 50
 
 
-LineByLineReadFiles::LineByLineReadFiles(char *dataList[], int pin) : LineByLine(dataList)
+LineByLineReadFiles::LineByLineReadFiles(char **pDataList, int pin) : LineByLine(pDataList)
 {
 	if (!SD.begin(pin)) {
 		//TODO: throw an error

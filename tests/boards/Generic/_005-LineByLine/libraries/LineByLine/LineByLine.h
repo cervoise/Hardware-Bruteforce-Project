@@ -8,13 +8,13 @@
 
 class LineByLine {
 	public:
-		LineByLine(char*[]);
+		LineByLine(char**);
 		
 		bool hasNext();
 		char* next();
 		
 	protected:
-		char *dataList[];
+		char **dataList;
 		int pos = -1;
 		
 };

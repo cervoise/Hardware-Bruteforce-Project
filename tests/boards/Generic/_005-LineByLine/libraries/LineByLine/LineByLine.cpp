@@ -2,9 +2,9 @@
 
 #include "LineByLine.h"
 
-LineByLine::LineByLine(char *dataList[])
+LineByLine::LineByLine(char **pDataList)
 {
-	dataList = dataList;
+	dataList = pDataList;
 }
 
 bool LineByLine::hasNext()
