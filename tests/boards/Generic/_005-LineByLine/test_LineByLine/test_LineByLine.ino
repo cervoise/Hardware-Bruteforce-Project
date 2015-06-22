@@ -33,10 +33,15 @@ void setup() {
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
   }
+  Serial.println("Setup done.");
 }
 
 void loop() {
+  Serial.println("Begin loop");
   while(lineByLine.hasNext()) {
     Serial.println(lineByLine.next());
   }
+  Serial.println("End loop");
+  
+  while(true) {}
 }
