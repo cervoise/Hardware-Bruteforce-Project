@@ -64,6 +64,15 @@ char* LineByLineReadFiles::next()
 		i++;
 	}
 
+	if (i < LINE_MAX_LENGTH)
+	{
+		line[LINE_MAX_LENGTH-1] = '\0';
+	}
+	else
+	{
+		line[i-1] = '\0';
+	}
+
 	return line;
 }
 
