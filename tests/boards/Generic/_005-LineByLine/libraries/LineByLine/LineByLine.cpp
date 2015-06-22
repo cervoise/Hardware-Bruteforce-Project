@@ -9,7 +9,7 @@ LineByLine::LineByLine(char **pDataList)
 
 bool LineByLine::hasNext()
 {
-	return pos < sizeof(dataList);
+	return pos < (int) sizeof(dataList);
 }
 
 char* LineByLine::next()
