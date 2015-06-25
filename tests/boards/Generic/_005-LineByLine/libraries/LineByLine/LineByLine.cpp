@@ -18,7 +18,7 @@ char* LineByLine::next()
 	{
 		//TODO: throw an error
 	} 
-	return dataList[++pos];	
+	return dataList[pos++];	
 }
 
 

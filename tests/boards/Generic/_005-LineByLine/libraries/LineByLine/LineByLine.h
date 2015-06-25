@@ -15,7 +15,7 @@ class LineByLine {
 		
 	protected:
 		char **dataList;
-		int pos = -1;
+		int pos = 0;
 		
 };
 
