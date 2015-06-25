@@ -20,11 +20,11 @@ const int sdCsPin = 4;
 #if READ_LINE_BY_LINE_IN_FILES
   #include <LineByLineReadFiles.h>
   char *wordfiles[] = {"file1.txt", "file2.txt"};
-  LineByLineReadFiles lineByLine(wordfiles, sdCsPin);
+  LineByLineReadFiles lineByLine(slice{.array = wordfiles, .size = sizeof(wordfiles)}, sdCsPin);
 #else
   #include <LineByLine.h>
   char *wordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet"};
-  LineByLine lineByLine(wordlist);
+  LineByLine lineByLine(slice{.array = wordlist, .size = sizeof(wordlist)});
 #endif
 
 void setup() {

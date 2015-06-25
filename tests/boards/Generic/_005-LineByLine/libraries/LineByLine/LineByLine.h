@@ -6,17 +6,21 @@
 //#include <SPI.h>
 #include <SD.h>
 
+typedef struct slice {
+	char** array;
+	size_t size;
+};
+
 class LineByLine {
 	public:
-		LineByLine(char**);
+		LineByLine(slice);
 		
 		bool hasNext();
 		char* next();
 		
 	protected:
-		char **dataList;
+		slice dataList;
 		int pos = 0;
-		
 };
 
 #endif

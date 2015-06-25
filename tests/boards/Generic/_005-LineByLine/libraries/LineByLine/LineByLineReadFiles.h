@@ -9,7 +9,7 @@
 
 class LineByLineReadFiles : public LineByLine {
 	public:
-		LineByLineReadFiles(char**, int);
+		LineByLineReadFiles(slice, int);
 		bool hasNext();
 		char* next();
 		

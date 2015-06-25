@@ -5,7 +5,7 @@
 #define LINE_MAX_LENGTH 50
 
 
-LineByLineReadFiles::LineByLineReadFiles(char **pDataList, int pin) : LineByLine(pDataList)
+LineByLineReadFiles::LineByLineReadFiles(slice pDataList, int pin) : LineByLine(pDataList)
 {
 	if (!SD.begin(pin)) {
 		//TODO: throw an error
@@ -36,7 +36,7 @@ bool LineByLineReadFiles::hasNext()
 		currentFile = SD.open(LineByLine::next());
 		if (!currentFile)
 		{
-			//TODO: log error while opening file dataList[pos]	
+			//TODO: log error while opening file dataList.array[pos]	
 		}
 
 		return hasNext();

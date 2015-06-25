@@ -2,14 +2,15 @@
 
 #include "LineByLine.h"
 
-LineByLine::LineByLine(char **pDataList)
+
+LineByLine::LineByLine(slice pDataList)
 {
 	dataList = pDataList;
 }
 
 bool LineByLine::hasNext()
 {
-	return pos < (int) sizeof(dataList);
+	return pos < (int) dataList.size;
 }
 
 char* LineByLine::next()
@@ -18,7 +19,7 @@ char* LineByLine::next()
 	{
 		//TODO: throw an error
 	} 
-	return dataList[pos++];	
+	return dataList.array[pos++];	
 }
 
 
