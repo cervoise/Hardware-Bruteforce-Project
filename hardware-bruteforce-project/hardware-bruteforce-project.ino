@@ -45,9 +45,9 @@ const int sdCsPin = 4;
   //NO SD Card : you specify one or more login and password
   #include <LineByLine.h>   
   char *loginWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet"};
-  LineByLine login(loginWordlist);
+  LineByLine login(slice{.array = loginWordlist, .size = sizeof(loginWordlist)});
   char *passwordWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet", "test"};
-  
+  LineByLine password(slice{.array = passwordWordlist, .size = sizeof(passwordWordlist)});
 
 
 //If you're not bruteforcing a PIN you can remove the lines below
@@ -76,7 +76,6 @@ void loop(){
   while(!digitalRead(8)) {}
 
   
-LineByLine password(passwordWordlist);
   while(password.hasNext()) {
      //testedLogin = login.next()
      char* testedPassword = password.next();
