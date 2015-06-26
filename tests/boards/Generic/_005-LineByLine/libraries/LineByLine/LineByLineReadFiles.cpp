@@ -52,26 +52,18 @@ char* LineByLineReadFiles::next()
 
 	// Arghh, we can't read lines directly: we need to reinvent the wheel
 	int i = 0;
-	char *line = (char*) malloc(LINE_MAX_LENGTH * sizeof(char));
-	while (i == 0 || line[i-1] != '\n')
+	char c;
+	char *line = (char*) malloc((LINE_MAX_LENGTH + 1) * sizeof(char));
+	while ((c=currentFile.read()) != '\n')
 	{
-		// Check that char position doesn't exceed max length
 		if (i < LINE_MAX_LENGTH)
 		{
-			line[i] = currentFile.read();
+			line[i] = c;
+			 i++;
 		}
-		
-		i++;
 	}
 
-	if (i < LINE_MAX_LENGTH)
-	{
-		line[LINE_MAX_LENGTH-1] = '\0';
-	}
-	else
-	{
-		line[i-1] = '\0';
-	}
+	line[i] = '\0';
 
 	return line;
 }
