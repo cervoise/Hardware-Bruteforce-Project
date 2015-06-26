@@ -39,7 +39,9 @@ void setup() {
 void loop() {
   Serial.println("Begin loop");
   while(lineByLine.hasNext()) {
-    Serial.println(lineByLine.next());
+    char *next = lineByLine.next();
+    Serial.println(next);
+    free(next);
   }
   Serial.println("End loop");
   

@@ -52,7 +52,7 @@ char* LineByLineReadFiles::next()
 
 	// Arghh, we can't read lines directly: we need to reinvent the wheel
 	int i = 0;
-	char line[LINE_MAX_LENGTH];
+	char *line = (char*) malloc(LINE_MAX_LENGTH * sizeof(char));
 	while (i == 0 || line[i-1] != '\n')
 	{
 		// Check that char position doesn't exceed max length
