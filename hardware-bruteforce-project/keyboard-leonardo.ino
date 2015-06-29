@@ -1,17 +1,20 @@
-void keyboardStart()
-{
-   Keyboard.begin();
-}
+#if defined(__AVR_ATmega32U4__)
 
-void typePassword(char * testPassword)
-{
-   Keyboard.print(testPassword);
-}
+  void keyboardStart()
+  {
+     Keyboard.begin();
+  }
+  
+  void typePassword(char * testPassword)
+  {
+     Keyboard.print(testPassword);
+  }
+  
+  void typeSpecial(int key)
+  {
+     Keyboard.press(key);
+     delay(50);
+     Keyboard.releaseAll();
+  }
 
-void typeSpecial(int key)
-{
-   Keyboard.press(key);
-   delay(50);
-   Keyboard.releaseAll();
-}
-
+#endif

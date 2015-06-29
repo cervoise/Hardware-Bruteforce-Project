@@ -5,8 +5,6 @@ PinBruteForce::PinBruteForce(int pSize)
 	size = pSize;
 	value = 0;
 	limit = powint(10, size) ;
-	Serial.println(size) ;
-	Serial.println(limit) ;
 }
 
 bool PinBruteForce::hasNext()
@@ -16,12 +14,9 @@ bool PinBruteForce::hasNext()
 
 char* PinBruteForce::next()
 {
-	if (!hasNext())
-	{
+	if (!hasNext()) {
 		//TODO: throw an error
 	}
-	//Serial.println(limit);
-	//Serial.println(value);
 	return format(value++);	
 }
 

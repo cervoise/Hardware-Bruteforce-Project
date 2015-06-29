@@ -10,7 +10,7 @@ void setup() {
   delay(1500);
   Serial.println("start");
 
-  PinBruteForce p(5);
+  PinBruteForce p(4);
 
   while(p.hasNext())
   {
