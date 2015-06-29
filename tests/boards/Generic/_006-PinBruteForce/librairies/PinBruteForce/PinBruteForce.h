@@ -10,11 +10,11 @@ class PinBruteForce {
 		char* next();
 		
 	protected:
-		long value;
+		unsigned long value;
 		int size;
-		long limit;
+		unsigned long limit;
 		char* format(long);
-		long powint(int, unsigned int);
+		unsigned long powint(unsigned int, unsigned int);
 };
 
 #endif
