@@ -25,7 +25,7 @@ char* PinBruteForce::next()
 	return format(value++);	
 }
 
-char* PinBruteForce::format(long pValue)
+char* PinBruteForce::format(unsigned long pValue)
 {
   int arraySize = size + 1;
   char *pinCode = (char *) malloc((arraySize) * sizeof(char));
@@ -36,7 +36,7 @@ char* PinBruteForce::format(long pValue)
   }
 
   // Convert pValue to string
-  snprintf(pinCode, arraySize, "%d", pValue);
+  snprintf(pinCode, arraySize, "%lu", pValue);
 
   // Shift string to the right until the last char is '\0'
   while(pinCode[arraySize - 1] != '\0')
@@ -51,9 +51,9 @@ char* PinBruteForce::format(long pValue)
   return pinCode;
 }
 
-long PinBruteForce::powint(int factor, unsigned int exponent)
+unsigned long PinBruteForce::powint(unsigned int factor, unsigned int exponent)
 {
-    long product = 1;
+    unsigned long product = 1;
     while (exponent--)
        product *= factor;
     return product;
