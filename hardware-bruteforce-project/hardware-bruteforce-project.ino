@@ -28,11 +28,11 @@
   const int sdCsPin = 4;
   
   #if LOGIN_IN_FILES
-    char *loginWordfiles[] = {"file1.txt", "file2.txt"};
+    char *loginWordfiles[] = {"login1.txt", "login2.txt"};
     LineByLineReadFiles login(loginWordfiles, sdCsPin);
   #endif
   #if PASSWORDS_IN_FILES
-    char *passwordWordfiles[] = {"file1.txt", "file2.txt"};
+    char *passwordWordfiles[] = {"pass1.txt", "pass2.txt"};
     LineByLineReadFiles password(passwordWordfiles, sdCsPin);
   #endif
 #endif
