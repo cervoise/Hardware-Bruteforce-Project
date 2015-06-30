@@ -4,6 +4,7 @@
 #include <LCD16x2.h>
 #include <Wire.h>
 #include <SD.h>
+#include <SPI.h>
 
 LCD16x2 lcd;
 
@@ -24,7 +25,7 @@ void setup(){
   }
 
   // re-open the file for reading:
-  myFile = SD.open("test.txt");
+  myFile = SD.open("file1.txt");
   if (myFile) {
     // read from the file until there's nothing else in it:
     while (myFile.available()) {

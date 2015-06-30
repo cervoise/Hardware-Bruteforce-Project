@@ -1,5 +1,4 @@
 /* Do not use this file !!! Code is not complete */
-
 #define USE_LOGIN false
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
@@ -14,7 +13,20 @@
 #define CLASSIC_LCD false
 //Need LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
 #define LCD16X2 true
+//If you want to use another button with the LCD16X2 go to hell
+#if not LCD16X2
+  #define BUTTON true
+  #define BUTTON_PIN 8
+#endif
 
+#if CLASSIC_LCD
+  #define LCD_RS 15
+  #define LCD_E 14
+  #define LCD_D4 5
+  #define LCD_D5 4
+  #define LCD_D6 3
+  #define LCD_D7 2
+#endif
 
 #if BRUTEFORCE_PIN
   #include <PinBruteForce.h>
@@ -55,22 +67,37 @@ int limitTest = 0;
 int timeToWait = 5000;
 */
 
-void setup(){
-  /*
+void lcdStart();
+void lcdPrint(char*);
+void lcdClear();
+void keyboardStart();
+void typePassword(char*);
+void typeEnter();
+void typeReturn();
+void typeTab();
+void waitButtonPressed();
+
+void setup() {
+  
   int attempt = 0;
   lcdStart();
   
   keyboardStart();
+/*
 
-  pinMode(7, OUTPUT);
-  digitalWrite(7, HIGH);
-  pinMode(8, INPUT);
   
   delay(5000);
 */
+  lcdPrint("Start: button1");
+  waitButtonPressed();
+  lcdClear();
 }
 
 void loop(){
+lcdPrint("Yeah");
+delay(5000);
+lcdClear();
+while(1) {}
 /*
   while(!digitalRead(8)) {}
 

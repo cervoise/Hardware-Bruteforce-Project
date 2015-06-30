@@ -1,5 +1,4 @@
-#if defined(__AVR_ATmega32U4__)
-
+#if defined(__MK20DX128__) or defined(__MK20DX256__)
   void keyboardStart()
   {
      Keyboard.begin();
@@ -12,24 +11,23 @@
 
   void typeKey(int key)
   {
-     Keyboard.press(key);
-     delay(50);
-     Keyboard.releaseAll();
+    Keyboard.set_key1(key);
+    Keyboard.send_now();
   }
   
   void typeEnter()
   {
-     typeKey(KEY_RETURN);
+     typeKey(KEY_ENTER);
   }
 
   void typeBackspace()
   {
-     typeKey(KEY_BACKSPACE );
+     typeKey(KEY_BACKSPACE);
   }
 
   void typeTab()
   {
      typeKey(KEY_TAB);
   }
-  
+
 #endif
