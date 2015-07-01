@@ -41,11 +41,11 @@
   
   #if LOGIN_IN_FILES
     char *loginWordfiles[] = {"login1.txt", "login2.txt"};
-    LineByLineReadFiles login(loginWordfiles, sdCsPin);
+    LineByLineReadFiles login(slice{.array = loginWordfiles, .size = sizeof(loginWordfiles)}, sdCsPin);
   #endif
   #if PASSWORDS_IN_FILES
     char *passwordWordfiles[] = {"pass1.txt", "pass2.txt"};
-    LineByLineReadFiles password(passwordWordfiles, sdCsPin);
+    LineByLineReadFiles password(slice{.array = passwordWordfiles, .size = sizeof(passwordWordfiles)}, sdCsPin);
   #endif
 #endif
 
