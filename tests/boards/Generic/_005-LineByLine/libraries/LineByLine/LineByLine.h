@@ -12,6 +12,7 @@ typedef struct slice {
 class LineByLine {
 	public:
 		LineByLine(slice);
+		void init();
 		
 		bool hasNext();
 		char* next();

@@ -12,6 +12,11 @@ LineByLineReadFiles::LineByLineReadFiles(slice pDataList, int pin) : LineByLine(
 	}
 }
 
+void LineByLineReadFiles::init()
+{
+	LineByLine::init();
+}
+
 
 bool LineByLineReadFiles::hasNext()
 {

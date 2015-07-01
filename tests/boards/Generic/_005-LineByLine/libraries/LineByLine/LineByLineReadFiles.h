@@ -10,6 +10,8 @@
 class LineByLineReadFiles : public LineByLine {
 	public:
 		LineByLineReadFiles(slice, int);
+		void init();
+
 		bool hasNext();
 		char* next();
 		

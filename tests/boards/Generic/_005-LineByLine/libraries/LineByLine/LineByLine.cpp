@@ -2,10 +2,14 @@
 
 #include "LineByLine.h"
 
-
 LineByLine::LineByLine(slice pDataList)
 {
 	dataList = pDataList;
+}
+
+void LineByLine::init()
+{
+	pos = 0;
 }
 
 bool LineByLine::hasNext()
