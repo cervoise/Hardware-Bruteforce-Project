@@ -122,6 +122,7 @@ while(password.hasNext()) {
     lcdClear();
     lcdPrint(testedPassword);
     cutPassword(testedPassword);
+    free(testedPassword);
     attempt++;
   }
 }
