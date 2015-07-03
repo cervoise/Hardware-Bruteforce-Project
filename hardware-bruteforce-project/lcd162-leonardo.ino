@@ -22,4 +22,13 @@
   {
     while(lcd.readButtons() & 0x01){} //It's nice, isn't it. 
   }
+
+  //This is not working yet
+  void pauseWithButton()
+  {
+    if(lcd.readButtons() & !0x02) {
+      lcdPrint("Attack paused");
+      waitButtonPressed();
+    }
+  }
 #endif

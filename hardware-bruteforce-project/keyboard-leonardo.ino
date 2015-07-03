@@ -4,6 +4,11 @@
   {
      Keyboard.begin();
   }
+
+  void typeLetter(char letter)
+  {
+    Keyboard.print(letter);
+  }
   
   void typePassword(char * testPassword)
   {
@@ -24,7 +29,7 @@
 
   void typeBackspace()
   {
-     typeKey(KEY_BACKSPACE );
+     typeKey(KEY_BACKSPACE);
   }
 
   void typeTab()

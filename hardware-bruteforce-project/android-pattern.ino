@@ -1,3 +1,4 @@
+#if defined(__AVR_ATmega32U4__)
 #define DELTA 120
 
 int getX(int pos)
@@ -87,3 +88,4 @@ void drawPattern(char* path)
   Mouse.release(MOUSE_ALL);
   moveWithoutClic(pathArray[sizeof(pathArray) - 1], 1);
 }
+#endif

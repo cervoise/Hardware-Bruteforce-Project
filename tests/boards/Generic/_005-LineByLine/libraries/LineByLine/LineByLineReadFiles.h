@@ -1,4 +1,3 @@
-
 #ifndef LineByLineReadFiles_h
 #define LineByLineReadFiles_h
 

@@ -1,0 +1,13 @@
+void attack(char* aPassword)
+{
+  int j;
+  for (j = 0 ; j < strlen(aPassword) ; j++) {
+    typeLetter(aPassword[j]);
+    delay(75);
+  }
+  for (j = 0; j < 2; j++) {
+    delay(250);
+    typeEnter();	
+  }
+  delay(50);
+}
