@@ -7,7 +7,7 @@
 
   void lcdPrint(char* inputString) {
     lcd.setCursor(0, 0);
-    lcd.print(password);
+    lcd.print(inputString);
   }
   
   void lcdClear() {

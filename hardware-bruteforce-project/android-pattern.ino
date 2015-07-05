@@ -1,4 +1,4 @@
-#if defined(__AVR_ATmega32U4__) and ANDROID_PATTER
+#if defined(__AVR_ATmega32U4__) and ANDROID_PATTERN
 #define DELTA 120
 
 int getX(int pos)
@@ -33,6 +33,13 @@ void mouseMoveY(int mouseY, int division = 1) {
   }
 }
 
+void mouseMouveDiag(int mouseX, int mouseY) {
+   for (int delta = DELTA; delta > 0; delta--) { 
+    Mouse.move(mouseX, mouseY, 0);
+    delay(5);
+  }
+}
+
 //use to go back to origin and to start drawing the pattern
 void moveWithoutClic(int origin, int destination)
 {
@@ -45,15 +52,16 @@ void moveWithoutClic(int origin, int destination)
 
 void drawPattern(char* path)
 {
-  int pathArray[sizeof(path)];
+  int pathArray[strlen(path)];
   
-  for (int i = 0 ; i < sizeof(path) - 1; i++) {
+  for (int i = 0 ; i < strlen(path) - 1; i++) {
     pathArray[i] = path[i] - '0';
   }
-  
+  Keyboard.print(path);
+  Keyboard.print(strlen(path));
   
   Mouse.release(MOUSE_ALL);
-  moveWithoutClic(1, pathArray[0]);
+  //moveWithoutClic(1, pathArray[0]);
   Mouse.press(1);
 
   //algo
@@ -67,10 +75,11 @@ void drawPattern(char* path)
       mouseMoveX(getX(pathArray[i+1]) - getX(pathArray[i]));
     //diagonal
     } else if( (abs(getX(pathArray[i+1]) - getX(pathArray[i])) == 1) and (abs(getY(pathArray[i+1]) - getY(pathArray[i])) == 1) ) {
-      mouseMoveX(getX(pathArray[i+1]) - getX(pathArray[i]), 2);
+      /*mouseMoveX(getX(pathArray[i+1]) - getX(pathArray[i]), 2);
       mouseMoveY(getY(pathArray[i+1]) - getY(pathArray[i]), 2);
       mouseMoveX(getX(pathArray[i+1]) - getX(pathArray[i]), 2);
-      mouseMoveY(getY(pathArray[i+1]) - getY(pathArray[i]), 2);
+      mouseMoveY(getY(pathArray[i+1]) - getY(pathArray[i]), 2); */
+      mouseMouveDiag(getX(pathArray[i+1]) - getX(pathArray[i]), getY(pathArray[i+1]) - getY(pathArray[i]));
     // strange diagonal on X
     } else if(abs(getX(pathArray[i+1]) - getX(pathArray[i])) == 2) {
       mouseMoveX(getX(pathArray[i+1]) - getX(pathArray[i]), 2);
@@ -86,6 +95,6 @@ void drawPattern(char* path)
 
   //we release and got back to origin
   Mouse.release(MOUSE_ALL);
-  moveWithoutClic(pathArray[sizeof(pathArray) - 1], 1);
+  //moveWithoutClic(pathArray[sizeof(pathArray) - 1], 1);
 }
 #endif

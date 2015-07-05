@@ -36,5 +36,4 @@
   {
      typeKey(KEY_TAB);
   }
-
 #endif

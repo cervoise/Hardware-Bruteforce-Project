@@ -1,4 +1,4 @@
-#if LCD16X2
+#if defined(__AVR_ATmega32U4__) and LCD16X2
   #include <LCD16x2.h>
   #include <Wire.h>
   
