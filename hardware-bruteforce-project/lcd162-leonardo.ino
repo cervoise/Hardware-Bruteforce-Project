@@ -5,8 +5,8 @@
   LCD16x2 lcd;
 
   void lcdPrint(char* inputString) {
-          lcd.lcdGoToXY(1,1);
-          lcd.lcdWrite(inputString);
+    lcd.lcdGoToXY(1,1);
+    lcd.lcdWrite(inputString);
   }
   
   void lcdClear() {

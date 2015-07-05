@@ -1,4 +1,4 @@
-#if defined(__AVR_ATmega32U4__)
+#if defined(__AVR_ATmega32U4__) and ANDROID_PATTER
 #define DELTA 120
 
 int getX(int pos)
