@@ -1,5 +1,10 @@
 #if defined(__AVR_ATmega32U4__)
 
+  /*void wait(int ms)
+  {
+    delay(ms);
+  }*/
+
   void keyboardStart()
   {
      Keyboard.begin();

@@ -1,4 +1,11 @@
 #if defined(__MK20DX128__) or defined(__MK20DX256__)
+/*
+  void wait(int ms)
+  {
+    delay(ms);
+    delay(ms/2);
+  }
+*/
   void keyboardStart()
   {
      Keyboard.begin();

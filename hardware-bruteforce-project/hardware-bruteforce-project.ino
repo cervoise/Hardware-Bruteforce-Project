@@ -2,17 +2,17 @@
 #define USE_LOGIN false
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
-#define PASSWORD_IN_FILES true
+#define PASSWORD_IN_FILES false
 
 //bruteforce only works for PIN code
 #define BRUTEFORCE_PASSWORD false
 #define BRUTEFORCE_PIN BRUTEFORCE_PASSWORD
 
-#define ANDROID_PATTERN false
+#define ANDROID_PATTERN true
 
 #define CLASSIC_LCD false
 //Need LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
-#define LCD16X2 true
+#define LCD16X2 false
 //If you want to use an external button with the LCD16X2 go to hell
 #if not LCD16X2
   #define BUTTON false
@@ -60,8 +60,8 @@
 
 #if not BRUTEFORCE_PASSWORD and not PASSWORD_IN_FILES
   #include <LineByLine.h>
-  char *passwordWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet", "1234567812345678", "test", "password", "toto", "tutu" };
-  //char *passwordWordlist[] = {"1235", "1236" };
+  //char *passwordWordlist[] = {"lorem", "ipsum", "dolor", "sit", "amet", "1234567812345678", "test", "password", "toto", "tutu" };
+  char *passwordWordlist[] = {"3214", "1576", "1478", "2589", "7268", "1236" };
   LineByLine password(slice{.array = passwordWordlist, .size = sizeof(passwordWordlist) / sizeof(char*) });    
 #endif
 
@@ -89,6 +89,7 @@ int attempt = 0;
 #endif
 
 void keyboardStart();
+//void wait(int);
 void typeLetter(char);
 void typePassword(char*);
 void typeEnter();
@@ -119,12 +120,14 @@ void setup() {
     #endif
     waitButtonPressed();
  #else
-    delay(5000);
+    wait(5000);
  #endif
 }
 
-void loop(){ 
-  //initMouse();
+void loop(){
+  #if ANDROID_PATTERN
+    initMouse();
+  #endif
   #if USE_LOGIN
   while(login.hasNext()) {
     char* testedLogin = login.next();

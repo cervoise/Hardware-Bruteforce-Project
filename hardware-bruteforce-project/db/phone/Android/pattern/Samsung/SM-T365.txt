@@ -1,3 +1,6 @@
+//SM-T365 with Android 4.4.4
+//Vertical layout
+
 void attack(char* aPassword, char* aLogin = "", int delayLoginChange = 0)
 {
   drawPattern(aPassword);
