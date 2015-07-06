@@ -1,5 +1,4 @@
-/* Do not use this file !!! Code is not complete */
-#define USE_LOGIN false
+#define USE_LOGIN true
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
 #define PASSWORD_IN_FILES false
@@ -12,7 +11,7 @@
 
 #define CLASSIC_LCD false
 //Need LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
-#define LCD16X2 false
+#define LCD16X2 true
 //If you want to use an external button with the LCD16X2 go to hell
 #if not LCD16X2
   #define BUTTON false
@@ -54,7 +53,7 @@
 
 #if USE_LOGIN and not LOGIN_IN_FILES
   #include <LineByLine.h>
-  char *loginWordlist[] = {"admin", "root"};
+  char *loginWordlist[] = {"admin", "root", "acervoise"};
   LineByLine login(slice{.array = loginWordlist, .size = sizeof(loginWordlist) / sizeof(char*)});
 #endif
 
@@ -120,7 +119,7 @@ void setup() {
     #endif
     waitButtonPressed();
  #else
-    wait(5000);
+    delay(5000);
  #endif
 }
 

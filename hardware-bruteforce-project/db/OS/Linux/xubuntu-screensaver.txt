@@ -1,9 +1,8 @@
 //Xubuntu 14.04
 
-void attack(char* aPassword)
+void attack(char* aPassword, char* aLogin = "", int delayLoginChange = 0)
 {
-  int j;
-  for (j = 0 ; j < strlen(aPassword) ; j++) {
+  for (int j = 0 ; j < strlen(aPassword) ; j++) {
     typeLetter(aPassword[j]);
     delay(125);
   }

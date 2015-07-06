@@ -1,3 +1,7 @@
+//Galaxy Notes 10.1 (GT-N8010) with Android 4.1.2
+
+//Horizontal
+
 void attack(char* aPassword, char* aLogin = "", int delayLoginChange = 0)
 {
   drawPattern(aPassword);
@@ -6,7 +10,7 @@ void attack(char* aPassword, char* aLogin = "", int delayLoginChange = 0)
 
 void initMouse()
 {
-  //mouseMove(2,0);
+  //Tablet keep the last position of the mouse, so put the mouse at the point at the top left
 }
 
 //this function is used to made the system wait when system is lock (like on Android, 30s every 5 failed attempt)lorem
@@ -19,4 +23,3 @@ void waitFunction()
     delay(2500);
   }
 }
-
