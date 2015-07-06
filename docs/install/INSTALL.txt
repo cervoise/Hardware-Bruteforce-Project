@@ -1,6 +1,6 @@
 In order to use this framework you need:
 
-An hardware board:
+A hardware board:
 - Teensy 3 or 3.1
 - Arduino Leonardo
 
@@ -10,4 +10,4 @@ You can add a LCD screen to your Teensy (https://www.arduino.cc/en/Tutorial/Liqu
 
 For the Arduino Leonardo you can add SD Shield (http://www.lextronic.fr/P28726-platine-sd-card-shield-v40-pour-arduino.html) and LCD shield: Olimex SHIELD-LCD16x2. Olimex SHIELD-LCD16x2 needs a specific lib: LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
 
-If you aim is cracking password on french setup target (be carreful, on most Android device, you need to let your Arduino/Teensy in QWERTY in order to perform the attack). So you have to replace arduino-folder/hardware/arduino/avr/cores/arduino/HID.cpp by the HID.cpp.bak.fr file.
+If your aim is cracking passwords on french setup target (be careful, on most Android device, you need to let your Arduino/Teensy in QWERTY in order to perform the attack). So you have to replace arduino-folder/hardware/arduino/avr/cores/arduino/HID.cpp by the HID.cpp.bak.fr file.

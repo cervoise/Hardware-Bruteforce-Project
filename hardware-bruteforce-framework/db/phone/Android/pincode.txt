@@ -1,0 +1,22 @@
+//Samsung Galaxy Tab A with Android 5.0.2
+//Samsung GT-N8010 (Galaxy Notes 10.1) with Android 4.1.2
+
+void attack(char* aPassword, char* aLogin = "", int delayLoginChange = 0)
+{
+  for (int j = 0 ; j < strlen(aPassword) ; j++) {
+    typeLetter(aPassword[j]);
+    delay(75);
+  }
+  typeEnter();
+  delay(500);
+}
+
+void waitFunction()
+{
+  for (int k = 0; k < 6 ; k++)
+  {
+    typeEnter();
+    delay(5000);
+  }
+  delay(150);
+}

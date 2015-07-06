@@ -1,0 +1,5 @@
+  {
+    passwordTest(dico[i]);
+    delay(1000);
+  }
+}
