@@ -1,0 +1,21 @@
+Teensy
+
+#if CLASSIC_LCD
+  #define LCD_RS 15
+  #define LCD_E 14
+  #define LCD_D4 5
+  #define LCD_D5 4
+  #define LCD_D6 3
+  #define LCD_D7 2
+#endif
+
+Arduino Leonardo
+
+#if CLASSIC_LCD
+  #define LCD_RS 12
+  #define LCD_E 11
+  #define LCD_D4 5
+  #define LCD_D5 4
+  #define LCD_D6 3
+  #define LCD_D7 2
+#endif

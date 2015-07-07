@@ -1,4 +1,4 @@
-#define USE_LOGIN true
+#define USE_LOGIN false
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
 #define PASSWORD_IN_FILES false
@@ -13,19 +13,17 @@
 #endif
 
 #define CLASSIC_LCD false
+#define LCD_KEYPAD_MODULE true
 //Need LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
-#define LCD16X2 true
+#define LCD16X2 false
 //If you want to use an external button with the LCD16X2 go to hell
-#if not LCD16X2
-  #define BUTTON false
-  #define BUTTON_PIN 8
-#else
-  #define BUTTON true
-#endif
+
+#define BUTTON false
+#define BUTTON_PIN 8
 
 #if CLASSIC_LCD
-  #define LCD_RS 15
-  #define LCD_E 14
+  #define LCD_RS 12
+  #define LCD_E 11
   #define LCD_D4 5
   #define LCD_D5 4
   #define LCD_D6 3
@@ -68,7 +66,7 @@
 #endif
 
 //If there is a try limit (on Android every 5 failed attemp you have to wait 30 sec.), set limit to true and limitTest to the number of attempts before a lock
-bool limit = true;
+bool limit = false;
 int limitTest = 5;
 //If you are using a login and a password, when you try a new login, you may have more time to wait before getting the error message (on Windows)
 //The delayNewLogin allows you to add waiting time when trying a new login for the first time (in ms).
@@ -80,7 +78,7 @@ int delayNewLogin = 10000;
 
 int attempt = 0;
 
-#if not LCD16X2 and not CLASSIC_LCD
+#if not LCD16X2 and not CLASSIC_LCD and not LCD_KEYPAD_MODULE
   void lcdStart() {}
   void lcdPrint(char*) {}
   void lcdClear() {}
