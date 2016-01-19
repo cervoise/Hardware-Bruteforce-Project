@@ -4,7 +4,7 @@
 
 #include <Arduino.h>
 
-typedef struct slice {
+struct slice {
 	char** array;
 	size_t size;
 };

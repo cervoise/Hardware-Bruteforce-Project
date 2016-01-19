@@ -13,7 +13,7 @@ class PinBruteForce {
 		unsigned long value;
 		int size;
 		unsigned long limit;
-		char* format(long);
+		char* format(unsigned long);
 		unsigned long powint(unsigned int, unsigned int);
 };
 

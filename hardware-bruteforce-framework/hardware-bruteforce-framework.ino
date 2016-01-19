@@ -1,24 +1,32 @@
+#pragma GCC diagnostic ignored "-Wwrite-strings"
+
+#if defined(__AVR_ATmega32U4__)
+  #include <Mouse.h>
+  #include <Keyboard.h>
+#endif
+
 #define USE_LOGIN false
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
 #define PASSWORD_IN_FILES false
 
 //bruteforce only works for PIN code
-#define BRUTEFORCE_PASSWORD false
+#define BRUTEFORCE_PASSWORD true
 #define BRUTEFORCE_PIN BRUTEFORCE_PASSWORD
 
-#define ANDROID_PATTERN true
+#define ANDROID_PATTERN false
 #if ANDROID_PATTERN
   #define DELTA_PATTERN 120
 #endif
 
 #define CLASSIC_LCD false
-#define LCD_KEYPAD_MODULE true
+#define LCD_KEYPAD_MODULE false
 //Need LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
-#define LCD16X2 false
+#define LCD16X2 true
 //If you want to use an external button with the LCD16X2 go to hell
 
-#define BUTTON false
+//If you are using LCD16X2, put BUTTON to true
+#define BUTTON true
 #define BUTTON_PIN 8
 
 #if CLASSIC_LCD
@@ -66,7 +74,7 @@
 #endif
 
 //If there is a try limit (on Android every 5 failed attemp you have to wait 30 sec.), set limit to true and limitTest to the number of attempts before a lock
-bool limit = false;
+bool limit = true;
 int limitTest = 5;
 //If you are using a login and a password, when you try a new login, you may have more time to wait before getting the error message (on Windows)
 //The delayNewLogin allows you to add waiting time when trying a new login for the first time (in ms).

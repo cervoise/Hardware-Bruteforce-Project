@@ -1,0 +1,16 @@
+Put libraries in "libraries" directory into your Arduino libraries directory.
+
+If you are using Olimex Shield LCD16x2 download the lib (https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/) and put it into your Arduino libraries directory.
+
+Manually test your attack in order to know if there is some limitation (30 sec to wait every 5 attemps, like on Android).
+
+Open hardware-bruteforce-framework.ino and configure preprocessor vars. If there is a stuck (as on Android), edit those lines:
+
+bool limit = false;
+int limitTest = 5;
+
+Then configure your attack functions in attack-functions.ino file (some models are in framewrok/db/).
+
+- attack function is what to do in order to enter a pass, login/pass, pincode, pattern...
+- initMouse function is how to set the Mouse at the beginning of the attack
+- waitFunction is what to do during the time to wait.
