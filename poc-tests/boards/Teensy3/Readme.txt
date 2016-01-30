@@ -5,3 +5,4 @@
 005: better code
 006: test mouse usage
 007: clean code, add while(1) at the end to avoid script looping
+008: i2c communication tests between a master Raspberry Pi and a slave Teensy. 
