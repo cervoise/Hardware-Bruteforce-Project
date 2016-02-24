@@ -8,10 +8,10 @@
 #define USE_LOGIN false
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
-#define PASSWORD_IN_FILES false
+#define PASSWORD_IN_FILES true
 
 //bruteforce only works for PIN code
-#define BRUTEFORCE_PASSWORD true
+#define BRUTEFORCE_PASSWORD false
 #define BRUTEFORCE_PIN BRUTEFORCE_PASSWORD
 
 #define ANDROID_PATTERN false

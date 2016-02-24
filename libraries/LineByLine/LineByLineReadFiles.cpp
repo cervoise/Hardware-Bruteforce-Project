@@ -1,22 +1,20 @@
 
-
 #include "LineByLineReadFiles.h"
 
 #define LINE_MAX_LENGTH 50
 
-
 LineByLineReadFiles::LineByLineReadFiles(slice pDataList, int pin) : LineByLine(pDataList)
 {
-	if (!SD.begin(pin)) {
-		//TODO: throw an error
-	}
+	cspin = pin;
 }
 
 void LineByLineReadFiles::init()
 {
+	if (!SD.begin(cspin)) {
+		Serial1.println("SD Error !");
+	}
 	LineByLine::init();
 }
-
 
 bool LineByLineReadFiles::hasNext()
 {
