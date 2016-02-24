@@ -2,7 +2,7 @@
   #define BUTTON true
 #endif
 
-#if not LCD16X2 and BUTTON
+#if not ( LCD16X2 or LCD_SERIAL ) and BUTTON
   #if LCD_KEYPAD_MODULE
   int  adc_key_val[5] ={30, 150, 360, 535, 760 };
   int NUM_KEYS = 5;
