@@ -1,5 +1,5 @@
 //Samsung GT-N8010 (Galaxy Notes 10.1) with Android 4.1.2
-//When you failed 5 times on Android Patterne, you can bruteforce PinCode without restriction
+//When you failed 5 times on Android Pattern, you can bruteforce PinCode without restriction
 
 void attack(char* aPassword, char* aLogin = "", int delayLoginChange = 0)
 {
