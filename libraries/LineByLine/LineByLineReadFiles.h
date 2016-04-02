@@ -16,7 +16,7 @@ class LineByLineReadFiles : public LineByLine {
 		
 	protected:
 		File currentFile;
-		
+		int cspin;
 };
 
 #endif

@@ -8,10 +8,10 @@
 #define USE_LOGIN false
 #define LOGIN_IN_FILES false
 //#define USE_PASSWORD true
-#define PASSWORD_IN_FILES false
+#define PASSWORD_IN_FILES true
 
 //bruteforce only works for PIN code
-#define BRUTEFORCE_PASSWORD true
+#define BRUTEFORCE_PASSWORD false
 #define BRUTEFORCE_PIN BRUTEFORCE_PASSWORD
 
 #define ANDROID_PATTERN false
@@ -22,8 +22,10 @@
 #define CLASSIC_LCD false
 #define LCD_KEYPAD_MODULE false
 //Need LCD16x2.h from https://www.olimex.com/Products/Duino/Shields/SHIELD-LCD16x2/
-#define LCD16X2 true
+#define LCD16X2 false
 //If you want to use an external button with the LCD16X2 go to hell
+// To redirect LCD to Serial display
+#define LCD_SERIAL true
 
 //If you are using LCD16X2, put BUTTON to true
 #define BUTTON true
@@ -86,7 +88,7 @@ int delayNewLogin = 10000;
 
 int attempt = 0;
 
-#if not LCD16X2 and not CLASSIC_LCD and not LCD_KEYPAD_MODULE
+#if not LCD16X2 and not CLASSIC_LCD and not LCD_KEYPAD_MODULE and not LCD_SERIAL
   void lcdStart() {}
   void lcdPrint(char*) {}
   void lcdClear() {}
@@ -119,11 +121,14 @@ void waitFunction();
 void setup() {
   delay(500);
   keyboardStart();
-  #if CLASSIC_LCD or LCD16X2
+  #if CLASSIC_LCD or LCD16X2 or LCD_SERIAL
     lcdStart();
   #endif
+  #if PASSWORD_IN_FILES
+    password.init();
+  #endif
   #if BUTTON
-    #if CLASSIC_LCD or LCD16X2
+    #if CLASSIC_LCD or LCD16X2 or LCD_SERIAL
       lcdPrint("Start: button1");
     #endif
     waitButtonPressed();
@@ -150,7 +155,7 @@ void loop(){
       } else {
         
         char* testedPassword = password.next();
-        #if CLASSIC_LCD or LCD16X2
+        #if CLASSIC_LCD or LCD16X2 or LCD_SERIAL
           lcdClear();
           lcdPrint(testedPassword);
         #endif
@@ -170,7 +175,7 @@ void loop(){
       #endif
     }
   
-  #if CLASSIC_LCD or LCD16X2
+  #if CLASSIC_LCD or LCD16X2 or LCD_SERIAL
     lcdClear();
     lcdPrint("Attack ended");
   #endif
