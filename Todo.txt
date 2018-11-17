@@ -1,4 +1,0 @@
-Show password number on LCD
-Go back on line if password is > 16
-Be compatible with BIOS
-Improve Arduino IDE in order to be able to switch between Azerty/Qwerty and so on
